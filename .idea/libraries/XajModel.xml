@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="XajModel">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../XajModel/out/artifacts/XajModel_jar/XajModel.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../XajModel/out/artifacts/XajModel_docs_jar/XajModel-docs_jar.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../XajModel/out/artifacts/XajModel_sources_jar/XajModel-sources_jar.jar!/" />
+    </SOURCES>
+  </library>
+</component>
