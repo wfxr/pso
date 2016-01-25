@@ -43,7 +43,7 @@ public class PSO {
                     x[j] += v[j];
 
                 for (int j = 0; j < D; ++j)
-                    x[j] = problemDomain.regionIntervals[j].Restrain(x[j]);
+                    x[j] = Restrain(x[j], problemDomain.regionIntervals[j]);
 
                 particle.current.distance =  problemDomain.TargetDistance(x);
                 particle.UpdateHistoryBest();
@@ -52,6 +52,12 @@ public class PSO {
         }
 
         return new PSOResult(globalBest.position, globalBest.distance);
+    }
+
+    private double Restrain(double value, Interval interval) {
+        if (value < interval.lower) return interval.lower;
+        if (value > interval.upper) return interval.upper;
+        return value;
     }
 
     private double getW(int current_iter, int max_iter) {

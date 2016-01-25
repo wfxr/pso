@@ -1,3 +1,7 @@
+/**
+ * Created by Wenxuan on 2016/1/13.
+ * Email: wenxuan-zhang@outlook.com
+ */
 public class Interval {
     public Interval(double lower, double upper) {
         if (upper < lower)
@@ -7,16 +11,8 @@ public class Interval {
         this.lower = lower;
     }
 
-    public boolean Inside(double value) {
+    public boolean Contains(double value) {
         return value > lower && value <= upper;
-    }
-
-    public double Restrain(double value) {
-        if (value < lower)
-            return lower;
-        if (value > upper)
-            return upper;
-        return value;
     }
 
     public double width() {
