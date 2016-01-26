@@ -2,6 +2,8 @@ import com.google.common.base.Preconditions;
 
 import java.util.Random;
 import java.util.function.Function;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -81,11 +83,7 @@ public class Domain {
      * @return Maximum allowable speed
      */
     private double[] ComputeMaxSpeed() {
-        double[] maxSpeed = new double[PositionDomain.length];
-        for (int i = 0; i < PositionDomain.length; ++i)
-            maxSpeed[i] = PositionDomain[i].width() * speedRate;
-
-        return maxSpeed;
+        return Stream.of(PositionDomain).mapToDouble(x -> x.width() * speedRate).toArray();
     }
 
     /**
@@ -107,10 +105,7 @@ public class Domain {
      * @return a swarm of random particles
      */
     public Particle[] RandomSwarm(int count) {
-        Particle[] swarm = new Particle[count];
-        for (int i = 0; i < count; ++i)
-            swarm[i] = RandomParticle();
-        return swarm;
+        return Stream.generate(this::RandomParticle).limit(count).toArray(Particle[]::new);
     }
 
     /**
