@@ -3,7 +3,6 @@ import com.google.common.base.Preconditions;
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -105,7 +104,9 @@ public class Domain {
      * @return a swarm of random particles
      */
     public Particle[] RandomSwarm(int count) {
-        return Stream.generate(this::RandomParticle).limit(count).toArray(Particle[]::new);
+        return Stream.generate(this::RandomParticle)
+                .limit(count)
+                .toArray(Particle[]::new);
     }
 
     /**
@@ -114,10 +115,9 @@ public class Domain {
      * @return a random position vector
      */
     public double[] RandomPosition() {
-        double[] vec = new double[PositionDomain.length];
-        for (int i = 0; i < PositionDomain.length; ++i)
-            vec[i] = Random(PositionDomain[i].getLower(), PositionDomain[i].getUpper());
-        return vec;
+        return Stream.of(PositionDomain)
+                .mapToDouble(x -> Random(x.getLower(), x.getUpper()))
+                .toArray();
     }
 
     /**
@@ -126,10 +126,9 @@ public class Domain {
      * @return a random velocity vector
      */
     public double[] RandomVelocity() {
-        double[] vec = new double[D];
-        for (int i = 0; i < D; ++i)
-            vec[i] = Random(-MaxSpeed[i], MaxSpeed[i]);
-        return vec;
+        return DoubleStream.of(MaxSpeed)
+                .map(v -> Random(-v, v))
+                .toArray();
     }
 
     /**
@@ -140,8 +139,8 @@ public class Domain {
      */
     public static DomainInfo FindBest(Particle[] swarm) {
         return Stream.of(swarm)
-                        .min((p1, p2) -> Double.compare(p1.Best.distance, p2.Best.distance))
-                        .get().Best;
+                .min((p1, p2) -> Double.compare(p1.Best.distance, p2.Best.distance))
+                .get().Best;
     }
 
     /**

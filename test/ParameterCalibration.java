@@ -1,9 +1,6 @@
 import XajModel.*;
 
-import java.util.Collections;
 import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * Created by Wenxuan on 1/17/2016.

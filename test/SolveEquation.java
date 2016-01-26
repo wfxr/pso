@@ -10,7 +10,7 @@ public class SolveEquation {
         };
         Domain domain = new Domain(regionIntervals, SolveEquation::EvaluationFunction);
         PSO pso = new PSO(domain);
-        PSOResult result = pso.Execute(16, 100);
+        PSOResult result = pso.Execute(32, 100);
         System.out.print(result);
     }
 
