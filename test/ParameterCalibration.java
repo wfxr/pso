@@ -1,5 +1,10 @@
 import XajModel.*;
 
+import java.util.Collections;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 /**
  * Created by Wenxuan on 1/17/2016.
  * Email: wenxuan-zhang@outlook.com
@@ -44,7 +49,7 @@ public class ParameterCalibration {
                 new Interval(0, 100),
         };
 
-        ProblemDomain domain = new ProblemDomain(regionIntervals, ParameterCalibration::Evaluate, 1);
+        Domain domain = new Domain(regionIntervals, ParameterCalibration::Evaluate, 1);
         PSO pso = new PSO(domain);
         PSOResult result = pso.Execute(1000, 100);
         System.out.println(result);
@@ -69,23 +74,12 @@ public class ParameterCalibration {
         if (n != pre.length)
             throw new IllegalArgumentException("length Error");
 
-        double avg = Average(obs);
+        double avg = DoubleStream.of(obs).average().getAsDouble();
         double s1 = 0, s2 = 0;
         for (int i = 0; i < n; ++i) {
             s1 += Math.pow(obs[i] - pre[i], 2);
             s2 += Math.pow(obs[i] - avg, 2);
         }
         return 1 - s1 / s2;
-    }
-
-    public static double Average(double[] array) {
-        return Sum(array) / array.length;
-    }
-
-    public static double Sum(double[] array) {
-        double sum = 0;
-        for (double value : array)
-            sum += value;
-        return sum;
     }
 }

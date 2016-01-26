@@ -8,7 +8,7 @@ public class SolveEquation {
                 new Interval(-10, 10),
                 new Interval(-10, 10)
         };
-        ProblemDomain domain = new ProblemDomain(regionIntervals, SolveEquation::EvaluationFunction);
+        Domain domain = new Domain(regionIntervals, SolveEquation::EvaluationFunction);
         PSO pso = new PSO(domain);
         PSOResult result = pso.Execute(16, 100);
         System.out.print(result);

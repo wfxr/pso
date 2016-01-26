@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="XajModel" level="project" />
+    <orderEntry type="library" name="com.google.guava:guava:Latest" level="project" />
   </component>
 </module>

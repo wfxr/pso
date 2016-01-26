@@ -1,24 +1,30 @@
 /**
+ * Particle class
+ *
  * Created by Wenxuan on 2016/1/13.
  * Email: wenxuan-zhang@outlook.com
  */
 public class Particle {
+    /**
+     * @param domainInfo Init domain info
+     * @param velocity Init velocity
+     */
     public Particle(DomainInfo domainInfo, double[] velocity) {
-        this.current = domainInfo;
-        this.historyBest =  current.clone();
-        this.velocity = velocity;
+        this.Current = domainInfo;
+        this.Best =  Current.clone();
+        this.Velocity = velocity;
     }
 
     public void UpdateHistoryBest() {
-        if (current.distance < historyBest.distance) {
-            historyBest.distance = current.distance;
-            historyBest.position = current.position.clone();
+        if (Current.distance < Best.distance) {
+            Best.distance = Current.distance;
+            Best.position = Current.position.clone();
         }
     }
 
-    public DomainInfo current;
-    public DomainInfo historyBest;
-    public double[] velocity;
+    public DomainInfo Current;
+    public DomainInfo Best;
+    public double[] Velocity;
 }
 
 class DomainInfo implements Cloneable {

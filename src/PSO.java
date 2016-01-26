@@ -9,18 +9,18 @@ public class PSO {
     private double C1 = 2.0;
     private double C2 = 2.0;
     private Interval W = new Interval(0.0, 1.0);
-    private ProblemDomain problemDomain;
+    private Domain domain;
 
     private Random rand = new Random();
 
-    public PSO(ProblemDomain problemProblemDomain) {
-        this.problemDomain = problemProblemDomain;
-        this.D = this.problemDomain.D;
+    public PSO(Domain problemDomain) {
+        this.domain = problemDomain;
+        this.D = this.domain.D;
     }
 
     public PSOResult Execute(int swarmCount, int max_iter) {
-        Particle[] swarm = problemDomain.GenerateSwarm(swarmCount);
-        DomainInfo globalBest = problemDomain.FindBest(swarm);
+        Particle[] swarm = domain.RandomSwarm(swarmCount);
+        DomainInfo globalBest = Domain.FindBest(swarm);
 
         for (int t = 0; t < max_iter; ++t) {
             double w = getW(t, max_iter);
@@ -29,9 +29,9 @@ public class PSO {
                 double r1 = rand.nextDouble();
                 double r2 = rand.nextDouble();
                 Particle particle = swarm[i];
-                double[] v = particle.velocity;
-                double[] x = particle.current.position;
-                double[] p = particle.historyBest.position;
+                double[] v = particle.Velocity;
+                double[] x = particle.Current.position;
+                double[] p = particle.Best.position;
                 double[] g = globalBest.position;
 
                 for (int j = 0; j < D; ++j)
@@ -43,25 +43,25 @@ public class PSO {
                     x[j] += v[j];
 
                 for (int j = 0; j < D; ++j)
-                    x[j] = Restrain(x[j], problemDomain.regionIntervals[j]);
+                    x[j] = Restrain(x[j], domain.PositionDomain[j]);
 
-                particle.current.distance =  problemDomain.TargetDistance(x);
+                particle.Current.distance =  domain.TargetError(x);
                 particle.UpdateHistoryBest();
             }
-            globalBest = problemDomain.FindBest(swarm);
+            globalBest = Domain.FindBest(swarm);
         }
 
         return new PSOResult(globalBest.position, globalBest.distance);
     }
 
     private double Restrain(double value, Interval interval) {
-        if (value < interval.lower) return interval.lower;
-        if (value > interval.upper) return interval.upper;
+        if (value < interval.getLower()) return interval.getLower();
+        if (value > interval.getUpper()) return interval.getUpper();
         return value;
     }
 
     private double getW(int current_iter, int max_iter) {
-        return W.upper - W.width() * current_iter / max_iter;
+        return W.getUpper() - W.width() * current_iter / max_iter;
     }
 }
 
