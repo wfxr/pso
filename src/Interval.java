@@ -52,7 +52,7 @@ public class Interval {
      * @param lower lower bound to set
      */
     public void setLower(double lower) {
-        Preconditions.checkArgument(lower <= this.upper, "lower bound cannot be greater than upper bound");
+        CheckLowerBoundValid(lower);
         this.lower = lower;
     }
 
@@ -71,7 +71,7 @@ public class Interval {
      * @param upper upper bound to set
      */
     public void setUpper(double upper) {
-        Preconditions.checkArgument(upper >= this.lower, "upper bound cannot be less than lower bound");
+        CheckUpperBoundValid(upper);
         this.upper = upper;
     }
 
@@ -82,9 +82,21 @@ public class Interval {
      * @param upper upper bound to assign
      */
     public void Assign(double lower, double upper) {
-        Preconditions.checkArgument(lower <= upper, "lower bound cannot be greater than upper bound");
+        CheckBoundsValid(lower, upper);
 
         this.lower = lower;
         this.upper = upper;
+    }
+
+    private void CheckLowerBoundValid(double lower) {
+        CheckBoundsValid(lower, upper);
+    }
+
+    private void CheckUpperBoundValid(double upper) {
+        CheckBoundsValid(lower, upper);
+    }
+
+    private static void  CheckBoundsValid(double lower, double upper) {
+        Preconditions.checkArgument(lower <= upper, "lower bound is greater than the upper bound");
     }
 }
