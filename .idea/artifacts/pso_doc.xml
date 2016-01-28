@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="pso-doc">
+    <output-path>$PROJECT_DIR$/out/artifacts/pso_doc</output-path>
+    <root id="archive" name="pso-doc.jar">
+      <element id="dir-copy" path="$PROJECT_DIR$/doc" />
+    </root>
+  </artifact>
+</component>
