@@ -88,14 +88,30 @@ public class Interval {
         this.upper = upper;
     }
 
+    /**
+     * Ensure the lower bound is not greater than the upper bound
+     *
+     * @param lower the lower bound to validate
+     */
     private void CheckLowerBoundValid(double lower) {
         CheckBoundsValid(lower, upper);
     }
 
+    /**
+     * Ensure the upper bound is not less than the upper bound
+     *
+     * @param upper the upper bound to validate
+     */
     private void CheckUpperBoundValid(double upper) {
         CheckBoundsValid(lower, upper);
     }
 
+    /**
+     * Ensure the lower bound is not greater than the upper bound
+     *
+     * @param lower the lower bound to validate
+     * @param upper the upper bound to validate
+     */
     private static void  CheckBoundsValid(double lower, double upper) {
         Preconditions.checkArgument(lower <= upper, "lower bound is greater than the upper bound");
     }

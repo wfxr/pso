@@ -71,6 +71,9 @@ public class Domain {
      * @param targetValue The evaluation function value to look for
      */
     public Domain(Interval[] positionDomain, Function<double[], Double> evaluationFunc, double targetValue) {
+        Preconditions.checkNotNull(positionDomain);
+        Preconditions.checkNotNull(evaluationFunc);
+
         D = positionDomain.length;
         PositionDomain = positionDomain;
         MaxSpeed = ComputeMaxSpeed();
