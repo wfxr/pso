@@ -8,7 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="XajModel" level="project" />
     <orderEntry type="library" name="com.google.guava:guava:Latest" level="project" />
+    <orderEntry type="library" name="xaj_hydrological_model" level="project" />
   </component>
 </module>

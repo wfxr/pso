@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="xaj_hydrological_model">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../xaj-hydrological-model/out/artifacts/xaj_hydrological_model" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../xaj-hydrological-model/out/artifacts/xaj_hydrological_model_src" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../xaj-hydrological-model/out/artifacts/xaj_hydrological_model" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../xaj-hydrological-model/out/artifacts/xaj_hydrological_model_src" recursive="false" type="SOURCES" />
+  </library>
+</component>

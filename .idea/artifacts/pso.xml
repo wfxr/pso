@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="pso">
+    <output-path>$PROJECT_DIR$/out/artifacts/pso</output-path>
+    <root id="archive" name="pso.jar">
+      <element id="module-output" name="pso" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../xaj-hydrological-model/out/artifacts/xaj_hydrological_model/xaj-hydrological-model.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-19.0-rc2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-19.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
